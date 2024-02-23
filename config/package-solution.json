@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "licencias-medicas-webpart-client-side-solution",
+    "id": "f08cd8f2-2d9c-4bb2-85a2-a800b018deb5",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.18.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "LicenciasMedicasWebpart description"
+      },
+      "longDescription": {
+        "default": "LicenciasMedicasWebpart description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "licencias-medicas-webpart Feature",
+        "description": "The feature that activates elements of the licencias-medicas-webpart solution.",
+        "id": "759f30bc-d6c9-451a-8023-e25b8ae7f1b3",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/licencias-medicas-webpart.sppkg"
+  }
+}

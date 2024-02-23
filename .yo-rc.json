@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.17.1",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.18.2",
+    "libraryName": "licencias-medicas-webpart",
+    "libraryId": "f08cd8f2-2d9c-4bb2-85a2-a800b018deb5",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "LicenciasMedicasWebpart",
+    "solutionShortDescription": "LicenciasMedicasWebpart description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
