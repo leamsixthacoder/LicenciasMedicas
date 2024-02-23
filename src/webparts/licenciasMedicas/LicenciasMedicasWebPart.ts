@@ -11,6 +11,7 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'LicenciasMedicasWebPartStrings';
 import LicenciasMedicas from './components/LicenciasMedicas';
 import { ILicenciasMedicasProps } from './components/ILicenciasMedicasProps';
+import '../../../assets/tailwind.css'
 
 export interface ILicenciasMedicasWebPartProps {
   description: string;
