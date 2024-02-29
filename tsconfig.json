@@ -13,7 +13,12 @@
     "outDir": "lib",
     "inlineSources": false,
     "noImplicitAny": true,
-
+    "paths": {
+      "@src/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@webparts/*": ["src/webparts/*"]
+    },
+    "baseUrl": "./",
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@microsoft"
@@ -30,6 +35,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "src/webparts/licenciasMedicas/components/LicenciasMedicasInputComponent/**/*.tsx"
   ]
 }
