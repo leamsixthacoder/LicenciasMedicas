@@ -2,6 +2,7 @@ import * as React from 'react';
 import styles from './LicenciasMedicas.module.scss';
 import type { ILicenciasMedicasProps } from './ILicenciasMedicasProps';
 import LicenciasMedicasInputComponent from './LicenciasMedicasInputComponent/LicenciasMedicasInputComponent'
+import LicenciasMedicasSelectComponent from './LicenciasMedicasSelectComponent/LicenciasMedicasSelectComponent';
 // import { escape } from '@microsoft/sp-lodash-subset';
 
 const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
@@ -27,7 +28,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
       <form className='mt-10 mx-2'>
 
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasInputComponent labelName='Colaborador' labelFor='colaborador' isDisabled={false} inputType='text' />
+          <LicenciasMedicasSelectComponent labelName='Colaborador' labelFor='colaborador' />
           <LicenciasMedicasInputComponent labelName='Posición' labelFor='posicion' isDisabled={true} inputType='text' />
         </div>
 
