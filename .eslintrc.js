@@ -8,7 +8,7 @@ module.exports = {
             files: ['*.ts', '*.tsx'], // Your TypeScript files extension
 
             parserOptions: {
-                project: ['./tsconfig.json', './src/webparts/licenciasMedicas/components//tsconfig-licencia.json'], 
+                project: ['./tsconfig.json', './src/webparts/licenciasMedicas/components/tsconfig-licencia.json'], 
             },
 
             rules: {
