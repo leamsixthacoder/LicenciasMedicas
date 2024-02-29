@@ -1,7 +1,7 @@
 import * as React from 'react'
-import type { LicenciasMedicasInputComponentProps } from './LicenciasMedicasInputComponentProps'
+import type { ILicenciasMedicasInputComponentProps } from './ILicenciasMedicasInputComponentProps'
 
-const LicenciasMedicasInputComponent: React.FC<LicenciasMedicasInputComponentProps> = (props) => {
+const LicenciasMedicasInputComponent: React.FC<ILicenciasMedicasInputComponentProps> = (props) => {
 
     const {labelName, inputType, labelFor, isDisabled,} = props
     const disableAttribute = isDisabled ? { disabled: true } : {};
@@ -10,8 +10,8 @@ const LicenciasMedicasInputComponent: React.FC<LicenciasMedicasInputComponentPro
         <>
             <div className='grow'>
                 <label htmlFor={labelFor.toLowerCase()} className='block text-sm font-medium leading-6 text-gray-900'>{labelName}</label>
-                <div className='mt-1'>
-                    <input type={inputType} {...disableAttribute} name={labelFor.toLowerCase()} id={labelFor.toLowerCase()} className={`box-border w-full rounded-sm h-[26px] ${disableStyle} text-sm`} />
+                <div className='mt-2'>
+                    <input type={inputType} {...disableAttribute} name={labelFor.toLowerCase()} id={labelFor.toLowerCase()} className={`box-border w-full rounded-sm h-[30px] ${disableStyle} text-sm`} />
                 </div>
             </div>
         </>
