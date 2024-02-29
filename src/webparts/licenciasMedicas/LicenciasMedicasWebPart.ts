@@ -19,8 +19,8 @@ export interface ILicenciasMedicasWebPartProps {
 
 export default class LicenciasMedicasWebPart extends BaseClientSideWebPart<ILicenciasMedicasWebPartProps> {
 
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
+  private _isDarkTheme = false;
+  private _environmentMessage = '';
 
   public render(): void {
     const element: React.ReactElement<ILicenciasMedicasProps> = React.createElement(
@@ -46,10 +46,10 @@ export default class LicenciasMedicasWebPart extends BaseClientSideWebPart<ILice
 
 
   private _getEnvironmentMessage(): Promise<string> {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
+    if (this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
       return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
         .then(context => {
-          let environmentMessage: string = '';
+          let environmentMessage = '';
           switch (context.app.host.name) {
             case 'Office': // running in Office
               environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
