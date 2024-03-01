@@ -1,5 +1,12 @@
-import * as React from "react";
-import { ILicenciasMedicasSelectComponentProps } from "./ILicenciasMedicasSelectComponentProps";
+import * as React from "react"
+import { ILicenciasMedicasSelectComponentProps } from "./ILicenciasMedicasSelectComponentProps"
+import Select from 'react-select'
+
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+]
 
 const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponentProps> = (props) => {
 
@@ -12,15 +19,8 @@ const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponent
                 {labelName}
             </label>
             <div className="mt-2">
-                <select
-                    id={labelFor}
-                    name={labelFor}
-                    className="box-border w-full rounded-sm h-[30px] border-2 border-[#0058a6] "
-                >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                </select>
+
+                <Select options={options} isLoading={true} className="box-border w-full rounded-sm h-[30px] border-2 border-[#0058a6] " />
             </div>
         </div>
 
