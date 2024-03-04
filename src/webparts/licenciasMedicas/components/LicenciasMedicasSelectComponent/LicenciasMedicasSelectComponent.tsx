@@ -14,7 +14,7 @@ const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponent
     return (
 
 
-        <div className="grow">
+        <div className="w-2/4">
             <label htmlFor={labelFor} className="block text-sm font-medium leading-6 text-gray-900">
                 {labelName}
             </label>
