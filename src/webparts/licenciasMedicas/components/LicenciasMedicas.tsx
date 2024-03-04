@@ -5,6 +5,7 @@ import LicenciasMedicasInputComponent from './LicenciasMedicasInputComponent/Lic
 import LicenciasMedicasSelectComponent from './LicenciasMedicasSelectComponent/LicenciasMedicasSelectComponent';
 import LicenciasMedicasDatePickerComponent from './LicenciasMedicasDatePickerComponent/LicenciasMedicasDatePickerComponent';
 import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
+import LicenciasMedicasTextareaComponent from './LicenciasMedicasTextareaComponent/LicenciasMedicasTextareaComponent';
 // import { escape } from '@microsoft/sp-lodash-subset';
 
 const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
@@ -41,15 +42,23 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
 
         <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasInputComponent labelName='Diagnóstico' labelFor='diagnostico' isDisabled={false} inputType='text' />
-          <LicenciasMedicasInputComponent labelName='Rembolso TSS' labelFor='tssrembolso' isDisabled={false} inputType='number' />
+          <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costlicencia' isDisabled inputType='number' />
+          
         </div>
         <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasDatePickerComponent labelName='Inicio de licencia' placeholder='Seleccionar fecha inicio....' />
           <LicenciasMedicasDatePickerComponent labelName='Fin de licencia' placeholder='Seleccionar fecha fin....' />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
+          <LicenciasMedicasDatePickerComponent labelName='Reingreso' placeholder='Seleccionar fecha Reingreso....' />
+          <LicenciasMedicasDatePickerComponent labelName='Recibida' placeholder='Seleccionar fecha Recibida....' />
+        </div>
+        <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasInputComponent labelName='Cant dias' labelFor='cantdias' isDisabled inputType='number' />
-          <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costlicencia' isDisabled inputType='number' />
+          <LicenciasMedicasInputComponent labelName='Rembolso TSS' labelFor='tssrembolso' isDisabled={false} inputType='number' />
+        </div>
+        <div className='mt-2 flex justify-start'>
+         <LicenciasMedicasTextareaComponent labelName='Comentario' labelFor='comentario' />
         </div>
 
       </form>
