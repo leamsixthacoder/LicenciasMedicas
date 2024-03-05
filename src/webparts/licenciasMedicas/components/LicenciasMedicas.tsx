@@ -6,9 +6,37 @@ import LicenciasMedicasSelectComponent from './LicenciasMedicasSelectComponent/L
 import LicenciasMedicasDatePickerComponent from './LicenciasMedicasDatePickerComponent/LicenciasMedicasDatePickerComponent';
 import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
 import LicenciasMedicasTextareaComponent from './LicenciasMedicasTextareaComponent/LicenciasMedicasTextareaComponent';
+import { UseEmployeesStore } from '../store/employee';
+import { useEffect } from 'react';
 // import { escape } from '@microsoft/sp-lodash-subset';
 
 const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
+  const employees = UseEmployeesStore(state => state.employees)
+  const isLoading = UseEmployeesStore(state => state.isLoading)
+  const fetchEmployees = UseEmployeesStore(state => state.fetchEmployees)
+  const selectEmployee = UseEmployeesStore((state) => state.selectEmployee);
+  const selectedEmployee = UseEmployeesStore((state) => state.selectedEmployee);
+
+  useEffect(() => {
+        void fetchEmployees();
+    }, [fetchEmployees]);
+
+  
+  const getEmployeeOptions = () => {
+    const options = employees.map((key) => ({
+      value: key.EmployeeId,
+      label:`${key.EmployeeId} ${key.Name}`
+    }))
+    return options
+  }
+
+  const handleSelectEmployee = (selectedOption: any) => {
+    // Assuming the value of the option is the EmployeeId
+    const selectedEmployeeId = selectedOption.value;
+    selectEmployee(selectedEmployeeId);
+};
+
+console.log(selectedEmployee?.Position + 'HELLO')
 
   // const {
   //   description,
@@ -31,13 +59,13 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
       <form className='mt-10 mx-2'>
 
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasSelectComponent labelName='Colaborador' labelFor='colaborador' />
-          <LicenciasMedicasInputComponent labelName='Posición' labelFor='posicion' isDisabled inputType='text' />
+          <LicenciasMedicasSelectComponent labelName='Colaborador' labelFor='colaborador'  options={getEmployeeOptions()} isLoading={isLoading} onSelect={handleSelectEmployee}/>
+          <LicenciasMedicasInputComponent labelName='Posición' labelFor='posicion' isDisabled inputType='text' value={selectedEmployee?.Position}/>
         </div>
 
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasInputComponent labelName='Departamento' labelFor='departamento' isDisabled inputType='text' />
-          <LicenciasMedicasInputComponent labelName='Area' labelFor='area' isDisabled inputType='text' />
+          <LicenciasMedicasInputComponent labelName='Departamento' labelFor='departamento' isDisabled inputType='text' value={selectedEmployee?.Department} />
+          <LicenciasMedicasInputComponent labelName='Area' labelFor='area' isDisabled inputType='text' value={selectedEmployee?.Area}/>
         </div>
 
         <div className='mt-2 flex justify-between gap-4'>
