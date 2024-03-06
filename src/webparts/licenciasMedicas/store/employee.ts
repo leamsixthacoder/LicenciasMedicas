@@ -11,13 +11,13 @@ interface State {
 
 }
 
-export const UseEmployeesStore = create<State>()((set) => {
+export const UseEmployeesStore = create<State>()((set, get) => {
     return {
         employees: [],
         selectedEmployee: null,
         isLoading: true,
         fetchEmployees: async () => {
-            const res = await fetch(`https://apisadministrativos.azurewebsites.net/SharepointAPIs/api/Employee/getAllEmployees`)
+            const res = await fetch(`https://localhost:5001/api/medical-leave/Employee/getAllEmployees`)
             const json = await res.json()
 
             const employees = json
@@ -26,7 +26,10 @@ export const UseEmployeesStore = create<State>()((set) => {
             set({ isLoading })
         },
         selectEmployee: (employeeId: string) => {
-            const selectedEmployee = set((state) => ({ selectedEmployee: state.employees.find((e) => e.EmployeeId === employeeId) }));
+            const { employees } = get()
+            const newEmployee = [...employees]
+            const selectedEmployee = newEmployee.find((e: Employees) => e.EmployeeId === employeeId);
+            console.log(selectedEmployee)
         },
     }
 })
