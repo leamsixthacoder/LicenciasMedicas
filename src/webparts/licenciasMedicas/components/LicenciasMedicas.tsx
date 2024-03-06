@@ -36,7 +36,6 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
     selectEmployee(selectedEmployeeId);
 };
 
-console.log(selectedEmployee?.Position + 'HELLO')
 
   // const {
   //   description,
