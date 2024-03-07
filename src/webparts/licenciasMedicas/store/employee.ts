@@ -28,8 +28,8 @@ export const UseEmployeesStore = create<State>()((set, get) => {
         selectEmployee: (employeeId: string) => {
             const { employees } = get()
             const newEmployee = [...employees]
-            const selectedEmployee = newEmployee.find((e: Employees) => e.EmployeeId === employeeId);
-            console.log(selectedEmployee)
+            const selectedEmployee = newEmployee.find((e: Employees) => e.EmployeeId === employeeId)
+            set({selectedEmployee})
         },
     }
 })
