@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import styles from './LicenciasMedicas.module.scss';
 import type { ILicenciasMedicasProps } from './ILicenciasMedicasProps';
@@ -18,32 +19,22 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
   const selectedEmployee = UseEmployeesStore((state) => state.selectedEmployee);
 
   useEffect(() => {
-        void fetchEmployees();
-    }, [fetchEmployees]);
+    void fetchEmployees();
+  }, [fetchEmployees]);
 
-  
+
   const getEmployeeOptions = () => {
     const options = employees.map((key) => ({
       value: key.EmployeeId,
-      label:`${key.EmployeeId} ${key.Name}`
+      label: `${key.EmployeeId} ${key.Name}`
     }))
     return options
   }
 
   const handleSelectEmployee = (selectedOption: any) => {
-    // Assuming the value of the option is the EmployeeId
     const selectedEmployeeId = selectedOption.value;
     selectEmployee(selectedEmployeeId);
-};
-
-
-  // const {
-  //   description,
-  //   isDarkTheme,
-  //   environmentMessage,
-  //   hasTeamsContext,
-  //   userDisplayName
-  // } = props;
+  };
 
   return (
 
@@ -58,19 +49,18 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
       <form className='mt-10 mx-2'>
 
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasSelectComponent labelName='Colaborador' labelFor='colaborador'  options={getEmployeeOptions()} isLoading={isLoading} onSelect={handleSelectEmployee}/>
-          <LicenciasMedicasInputComponent labelName='Posición' labelFor='posicion' isDisabled inputType='text' value={selectedEmployee?.Position}/>
+          <LicenciasMedicasSelectComponent labelName='Colaborador' labelFor='colaborador' options={getEmployeeOptions()} isLoading={isLoading} onSelect={handleSelectEmployee} />
+          <LicenciasMedicasInputComponent labelName='Posición' labelFor='posicion' isDisabled inputType='text' value={selectedEmployee?.Position} />
         </div>
 
         <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasInputComponent labelName='Departamento' labelFor='departamento' isDisabled inputType='text' value={selectedEmployee?.Department} />
-          <LicenciasMedicasInputComponent labelName='Area' labelFor='area' isDisabled inputType='text' value={selectedEmployee?.Area}/>
+          <LicenciasMedicasInputComponent labelName='Area' labelFor='area' isDisabled inputType='text' value={selectedEmployee?.Area} />
         </div>
 
         <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasInputComponent labelName='Diagnóstico' labelFor='diagnostico' isDisabled={false} inputType='text' />
-          <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costlicencia' isDisabled inputType='number' />
-          
+          <LicenciasMedicasInputComponent labelName='Horas diarias de trabajo' labelFor='canthoras' isDisabled={false} inputType='number' />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasDatePickerComponent labelName='Inicio de licencia' placeholder='Seleccionar fecha inicio....' />
@@ -81,11 +71,15 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
           <LicenciasMedicasDatePickerComponent labelName='Recibida' placeholder='Seleccionar fecha Recibida....' />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasInputComponent labelName='Cant dias' labelFor='cantdias' isDisabled inputType='number' />
-          <LicenciasMedicasInputComponent labelName='Rembolso TSS' labelFor='tssrembolso' isDisabled={false} inputType='number' />
+          <LicenciasMedicasInputComponent labelName='Cant dias' labelFor='cantdias' isDisabled={false} inputType='number' />
+          <div className=' flex justify-between gap-4'>
+            <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costlicencia' isDisabled inputType='number' />
+            <LicenciasMedicasInputComponent labelName='Rembolso TSS' labelFor='tssrembolso' isDisabled={false} inputType='number' />
+          </div>
+
         </div>
         <div className='mt-2 flex justify-start'>
-         <LicenciasMedicasTextareaComponent labelName='Comentario' labelFor='comentario' />
+          <LicenciasMedicasTextareaComponent labelName='Comentario' labelFor='comentario' />
         </div>
 
       </form>
