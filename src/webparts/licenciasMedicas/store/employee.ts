@@ -7,7 +7,7 @@ interface State {
     selectedEmployee: Employees | null
     fetchEmployees: () => Promise<void>
     isLoading: boolean
-    selectEmployee: (employeeId: string) => void;
+    selectEmployee: (employeeId: string) => void
 
 }
 
