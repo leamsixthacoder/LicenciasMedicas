@@ -9,14 +9,18 @@ import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/L
 import LicenciasMedicasTextareaComponent from './LicenciasMedicasTextareaComponent/LicenciasMedicasTextareaComponent';
 import { UseEmployeesStore } from '../store/employee';
 import { useEffect } from 'react';
+import { UseRegisterStore } from '../store/RegistroLicencia';
 // import { escape } from '@microsoft/sp-lodash-subset';
 
 const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
+  
   const employees = UseEmployeesStore(state => state.employees)
   const isLoading = UseEmployeesStore(state => state.isLoading)
   const fetchEmployees = UseEmployeesStore(state => state.fetchEmployees)
-  const selectEmployee = UseEmployeesStore((state) => state.selectEmployee);
-  const selectedEmployee = UseEmployeesStore((state) => state.selectedEmployee);
+  const selectEmployee = UseEmployeesStore((state) => state.selectEmployee)
+  const selectedEmployee = UseEmployeesStore((state) => state.selectedEmployee)
+  const registerLeave = UseRegisterStore((state => state.registerLeave))
+  const setLeaveCost = UseRegisterStore((state => state.setLeaveCost))
 
   useEffect(() => {
     void fetchEmployees();
@@ -35,6 +39,10 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
     const selectedEmployeeId = selectedOption.value;
     selectEmployee(selectedEmployeeId);
   };
+
+  const handleInputChange = (value: any) => {
+    setLeaveCost(value)
+};
 
   return (
 
@@ -71,9 +79,9 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
           <LicenciasMedicasDatePickerComponent labelName='Recibida' placeholder='Seleccionar fecha Recibida....' />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasInputComponent labelName='Cant dias' labelFor='cantdias' isDisabled={false} inputType='number' />
+          <LicenciasMedicasInputComponent labelName='Cant dias' labelFor='cantdias' isDisabled={false} inputType='number' onChange={handleInputChange} />
           <div className=' flex justify-between gap-4'>
-            <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costlicencia' isDisabled inputType='number' />
+            <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costlicencia' isDisabled inputType='number' value={registerLeave.costoLicencia} />
             <LicenciasMedicasInputComponent labelName='Rembolso TSS' labelFor='tssrembolso' isDisabled={false} inputType='number' />
           </div>
 
