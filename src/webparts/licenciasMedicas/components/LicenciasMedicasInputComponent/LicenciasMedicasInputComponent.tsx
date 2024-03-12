@@ -12,7 +12,7 @@ const LicenciasMedicasInputComponent: React.FC<ILicenciasMedicasInputComponentPr
         const inputValue = event.target.value;
 
         if (onChange) {
-            onChange(inputValue);
+            onChange(inputValue, labelFor);
         }
     }
 
