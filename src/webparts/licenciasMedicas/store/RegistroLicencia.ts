@@ -3,8 +3,9 @@ import { type RegistroLicencia } from "../types/IRegistroLicencia";
 
 interface RegisterState {
     registerLeave: RegistroLicencia,
-    setLeaveDays : (amountOfDays: number) =>void
-    setTssRefound : (amount:number) => void
+    setRegisterLeave: (stateName: string, value: keyof RegistroLicencia) => void
+    setLeaveDays: (amountOfDays: number, payRate: number) => void
+    setTssRefound: (amount: number) => void
 }
 export const UseRegisterStore = create<RegisterState>()((set, get) => {
     return {
@@ -13,29 +14,38 @@ export const UseRegisterStore = create<RegisterState>()((set, get) => {
             posicion: '',
             area: '',
             diagnostico: '',
-            canthorasdia: 0,
+            canthorasdia: null,
             inicioLicencia: '',
             finLicencia: '',
             reingreso: '',
             recibida: '',
-            cantdias: 0,
-            costoLicencia: 0,
-            rembolsoTss: 0,
+            cantdias: null,
+            costoLicencia: null,
+            rembolsoTss: null,
             comentario: '',
         },
-        setLeaveDays(amountOfDays: number) {
-            const calculateCost = (0.60) * (47000 / 22.85) * amountOfDays
-            const {registerLeave} = get()
-            const updatedLeave = {...registerLeave, costoLicencia: Math.round(calculateCost)}
-            set({registerLeave: updatedLeave })
+        setRegisterLeave(stateName: string, value: keyof RegistroLicencia) {
+            const { registerLeave } = get()
+            const updatedLeave = { ...registerLeave, [stateName]: value };
+            set({ registerLeave: updatedLeave })
+
+        },
+        setLeaveDays(amountOfDays: number, payRate: number) {
+            const calculateCost = (payRate / 23.83) * amountOfDays
+            const { registerLeave } = get()
+            const updatedCost = Math.round(calculateCost);
+            const updatedLeave = { ...registerLeave, costoLicencia: updatedCost >= 0 ? updatedCost : 0 };
+            set({ registerLeave: updatedLeave })
         },
         setTssRefound(amount: number) {
-            const {registerLeave} = get()
+            const { registerLeave } = get()
             const costLeave = registerLeave.costoLicencia
-            let calculateCost = costLeave - amount
-            if(calculateCost < 0 ) calculateCost = 0
-            const updatedLeave = {...registerLeave, costoLicencia: calculateCost}
-            set({registerLeave: updatedLeave })
+            if (costLeave !== null) {
+                const updatedCost = costLeave - amount
+                const updatedLeave = { ...registerLeave, costoLicencia: updatedCost >= 0 ? updatedCost : 0 }
+                set({ registerLeave: updatedLeave })
+            }
+
         }
 
     }
