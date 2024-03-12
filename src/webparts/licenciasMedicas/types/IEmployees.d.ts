@@ -4,6 +4,7 @@ export interface Employees {
     Area: string
     Position: string
     Department: string
+    Salary: number
   }
   
   
