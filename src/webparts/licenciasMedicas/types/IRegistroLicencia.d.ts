@@ -3,14 +3,14 @@ export interface RegistroLicencia {
     posicion: string
     area: string
     diagnostico: string
-    canthorasdia: number
+    canthorasdia: number | null
     inicioLicencia: string
     finLicencia: string
     reingreso: string
     recibida: string
-    cantdias: number
-    costoLicencia: number
-    rembolsoTss: number
+    cantdias: number | null
+    costoLicencia: number | null
+    rembolsoTss: number | null
     comentario: string
 
 }
