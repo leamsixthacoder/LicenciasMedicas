@@ -5,8 +5,6 @@ export interface ILicenciasMedicasInputComponentProps {
     inputType: string,
     value?: any,
     isDisabled: boolean,
-    onChange?: (value: any) => void,
-    // isAmountOfDays?: boolean
-    // isTss?: boolean
+    onChange?: (value: any, inputName: string) => void,
 
 }
