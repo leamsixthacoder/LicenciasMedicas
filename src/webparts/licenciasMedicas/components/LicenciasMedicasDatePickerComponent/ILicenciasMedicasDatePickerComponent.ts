@@ -1,4 +1,5 @@
 export interface ILicenciasMedicasDatePickerComponent {
     labelName: string,
-    placeholder:string,
+    placeholder:string,    
+    value?: any,
 }
