@@ -20,6 +20,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
   const selectEmployee = UseEmployeesStore((state) => state.selectEmployee)
   const selectedEmployee = UseEmployeesStore((state) => state.selectedEmployee)
   const registerLeave = UseRegisterStore((state => state.registerLeave))
+  const setRegisterLeave = UseRegisterStore((state => state.setRegisterLeave))
   const setLeaveDays = UseRegisterStore((state => state.setLeaveDays))
   const setTssRefound = UseRegisterStore((state => state.setTssRefound))
 
@@ -42,8 +43,15 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
   };
 
   const handleInputChange = (value: any, inputName: string) => {
-    inputName === 'cantdias' ? setLeaveDays(value) : setTssRefound(value)
-};
+    if (selectedEmployee) {
+      console.log(selectedEmployee)
+      if (inputName === 'cantdias') setLeaveDays(value, selectedEmployee.Salary)
+      if (inputName === 'rembolsoTss') setTssRefound(value)
+
+      setRegisterLeave(inputName, value)
+    }
+
+  };
 
   return (
 
@@ -68,27 +76,27 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
         </div>
 
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasInputComponent labelName='Diagnóstico' labelFor='diagnostico' isDisabled={false} inputType='text' value={registerLeave.diagnostico}/>
-          <LicenciasMedicasInputComponent labelName='Horas diarias de trabajo' labelFor='canthoras' isDisabled={false} inputType='number'  />
+          <LicenciasMedicasInputComponent labelName='Diagnóstico' labelFor='diagnostico' isDisabled={false} inputType='text' onChange={handleInputChange} value={registerLeave.diagnostico} />
+          <LicenciasMedicasInputComponent labelName='Horas diarias de trabajo' labelFor='canthorasdia' isDisabled={false} inputType='number' onChange={handleInputChange} />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasDatePickerComponent labelName='Inicio de licencia' placeholder='Seleccionar fecha inicio....'/>
+          <LicenciasMedicasDatePickerComponent labelName='Inicio de licencia' placeholder='Seleccionar fecha inicio....' />
           <LicenciasMedicasDatePickerComponent labelName='Fin de licencia' placeholder='Seleccionar fecha fin....' />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasDatePickerComponent labelName='Reingreso' placeholder='Seleccionar fecha Reingreso....'  />
+          <LicenciasMedicasDatePickerComponent labelName='Reingreso' placeholder='Seleccionar fecha Reingreso....' />
           <LicenciasMedicasDatePickerComponent labelName='Recibida' placeholder='Seleccionar fecha Recibida....' />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
-          <LicenciasMedicasInputComponent labelName='Cant dias' labelFor='cantdias' isDisabled={false} inputType='number' onChange={handleInputChange} />
+          <LicenciasMedicasInputComponent labelName='Cant dias' labelFor='cantdias' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.cantdias} />
           <div className=' flex justify-between gap-4'>
-            <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costlicencia' isDisabled inputType='number' value={registerLeave.costoLicencia} />
-            <LicenciasMedicasInputComponent labelName='Rembolso TSS' labelFor='tssrembolso' isDisabled={false} inputType='number' onChange={handleInputChange} />
+            <LicenciasMedicasInputComponent labelName='Costo licencia' labelFor='costoLicencia' isDisabled inputType='number' value={registerLeave.costoLicencia} />
+            <LicenciasMedicasInputComponent labelName='Rembolso TSS' labelFor='rembolsoTss' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.rembolsoTss} />
           </div>
 
         </div>
         <div className='mt-2 flex justify-start'>
-          <LicenciasMedicasTextareaComponent labelName='Comentario' labelFor='comentario'/>
+          <LicenciasMedicasTextareaComponent labelName='Comentario' labelFor='comentario' />
         </div>
 
       </form>
@@ -100,5 +108,6 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
     </>
 
   );
+
 }
 export default LicenciasMedicas;
