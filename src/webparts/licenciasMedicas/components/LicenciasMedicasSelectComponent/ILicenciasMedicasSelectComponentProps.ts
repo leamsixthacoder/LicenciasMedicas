@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
+
 export interface ILicenciasMedicasSelectComponentProps {
     labelName: string,
     labelFor: string,
-    options: unknown[],
+    options: any[],
     isLoading: boolean,
-    value?: any,
-    onSelect: (selectedOption: unknown) => void
+    onSelect: (selectedOption: any, stateName: string) => void
 }

@@ -3,7 +3,7 @@ import type { ILicenciasMedicasInputComponentProps } from './ILicenciasMedicasIn
 
 const LicenciasMedicasInputComponent: React.FC<ILicenciasMedicasInputComponentProps> = (props) => {
 
-    const { labelName, inputType, labelFor, isDisabled, value, onChange} = props
+    const { labelName, inputType, labelFor, isDisabled, value, onChange, isRequired, placeholder} = props
     const disableAttribute = isDisabled ? { disabled: true } : {};
     const disableStyle = isDisabled ? 'bg-sky-100' : ''
 
@@ -18,9 +18,9 @@ const LicenciasMedicasInputComponent: React.FC<ILicenciasMedicasInputComponentPr
 
     return (
         <div className='w-2/4'>
-            <label htmlFor={labelFor.toLowerCase()} className='block text-sm font-medium leading-6 text-gray-900'>{labelName}</label>
+            <label htmlFor={labelFor.toLowerCase()} className='block text-sm font-medium leading-6 text-gray-900'><strong className='text-red-600'>{isRequired ? '*' : ''}</strong>{labelName}</label>
             <div className='mt-2'>
-                <input type={inputType} {...disableAttribute} onChange={handleOnChange} value={value} name={labelFor.toLowerCase()} id={labelFor.toLowerCase()} className={`box-border w-full pl-1 font-semibold text-black rounded-sm h-[30px] focus:border-[#0058a6] border ${disableStyle} text-sm`} />
+                <input type={inputType} {...disableAttribute} placeholder={placeholder} onChange={handleOnChange} value={value} name={labelFor.toLowerCase()} id={labelFor.toLowerCase()} className={`box-border w-full pl-1 font-semibold text-black rounded-sm h-[30px] focus:border-[#0058a6] border ${disableStyle} text-sm`} />
             </div>
         </div>
     )

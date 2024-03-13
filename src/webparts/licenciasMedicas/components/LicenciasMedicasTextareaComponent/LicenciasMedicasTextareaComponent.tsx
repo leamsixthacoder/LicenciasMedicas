@@ -3,7 +3,7 @@ import { ILicenciasMedicasTextareaComponent } from "./ILicenciasMedicasTextareaC
 
 const LicenciasMedicasTextareaComponent: React.FC<ILicenciasMedicasTextareaComponent> = (props) => {
 
-    const {labelName, labelFor } = props
+    const {labelName, labelFor, value } = props
     return (
         <div className="w-full">
             <label htmlFor={labelFor} className="block text-sm font-medium leading-6 text-gray-900">
@@ -16,6 +16,7 @@ const LicenciasMedicasTextareaComponent: React.FC<ILicenciasMedicasTextareaCompo
                     rows={3}
                     className="block w-full h-16 rounded-sm border-2 "
                     defaultValue={''}
+                    value={value}
                 />
             </div>
         </div>
