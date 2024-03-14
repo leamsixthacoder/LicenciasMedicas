@@ -33,12 +33,11 @@ export const UseRegisterStore = create<RegisterState>()((set, get) => {
             const { registerLeave } = get();
             let updatedValue: any;
         
-            // Convert valid numeric strings to numbers
             if (stateName === 'TotalDays' || stateName === 'TSSRefund' || stateName === 'TotalHours') {
                 if (typeof value === 'string' && !isNaN(parseFloat(value))) {
                     updatedValue = parseFloat(value);
                 } else {
-                    updatedValue = null; // Or handle invalid values appropriately
+                    updatedValue = null; 
                 }
             } else {
                 updatedValue = value;
@@ -58,12 +57,10 @@ export const UseRegisterStore = create<RegisterState>()((set, get) => {
         },
         setTssRefound: (amount: number) => {
             const { registerLeave } = get()
-            const costLeave = registerLeave.LicenseCost
-            if (costLeave !== null) {
-                const updatedCost = costLeave - amount
-                const updatedLeave = { ...registerLeave, LicenseCost: updatedCost >= 0 ? updatedCost : 0 }
-                set({ registerLeave: updatedLeave })
-            }
+            const originalLicenseCost = registerLeave.LicenseCost
+            const updatedLicenseCost = originalLicenseCost !== null ? originalLicenseCost - amount : null
+            const updatedLeave = {...registerLeave, TSSRefund: amount, LicenseCost: updatedLicenseCost}
+            set({ registerLeave: updatedLeave });
 
         },
 

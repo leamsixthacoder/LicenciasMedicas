@@ -4,17 +4,17 @@ import { TextField } from "office-ui-fabric-react"
 
 const LicenciasMedicasTextareaComponent: React.FC<ILicenciasMedicasTextareaComponent> = (props) => {
 
-    const { labelName, labelFor, value, onChange } = props
+    const { labelName, stateName, value, onChange } = props
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         const inputValue = event.target.value;
 
         if (onChange) {
-            onChange(inputValue, labelFor);
+            onChange(inputValue, stateName);
         }
     }
     return (
         <div className="w-full">
-            <label htmlFor={labelFor} className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor={stateName} className="block text-sm font-medium leading-6 text-gray-900">
                 {labelName}
             </label>
             <div className="mt-2">
