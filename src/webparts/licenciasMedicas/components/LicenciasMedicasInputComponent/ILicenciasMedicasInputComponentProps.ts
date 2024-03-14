@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ILicenciasMedicasInputComponentProps {
     labelName: string,
-    labelFor:string,
+    stateName:string,
     inputType: string,
     placeholder?: string
     value?: any,
