@@ -3,11 +3,11 @@ import * as React from "react"
 import { ILicenciasMedicasSelectComponentProps } from "./ILicenciasMedicasSelectComponentProps"
 import Select from 'react-select'
 const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponentProps> = (props) => {
-    const { labelFor, labelName, options, isLoading, onSelect } = props
+    const { labelFor, labelName, options, isLoading, onSelect, isRequired } = props
 
 
     const handleClick = (selectedOption: any) => {
-        onSelect(selectedOption, labelFor)
+        onSelect(selectedOption)
     }
 
 
@@ -16,7 +16,7 @@ const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponent
 
         <div className="w-2/4">
             <label htmlFor={labelFor} className="block text-sm font-medium leading-6 text-gray-900">
-                {labelName}
+                <strong className='text-red-600'>{isRequired ? '*' : ''}</strong>{' '}{labelName}
             </label>
             <div className="mt-2">
 
