@@ -5,13 +5,15 @@ export interface RegistroLicencia {
     Area: string
     Diagnostic: string
     TotalHours: number | null
-    DepartureDate: string
-    EndDate: string
-    ReEntryDate: string
-    DateRecieved: string
+    DepartureDate: Date
+    EndDate:  Date
+    ReEntryDate:  Date
+    DateRecieved: Date
     TotalDays: number | null
     LicenseCost: number | null
     TSSRefund: number | null
     Comments: string
+    Date:  Date
+    User: string;
 
 }
