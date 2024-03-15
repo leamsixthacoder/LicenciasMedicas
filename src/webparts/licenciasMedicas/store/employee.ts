@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { type Employees } from "../types/IEmployees";
+import { EmployeeService } from "../services/EmployeeService"
 
 
 interface State {
-    employees: Employees[]
+    employees: Employees[] 
     selectedEmployee: Employees | null
     fetchEmployees: () => Promise<void>
     isLoading: boolean
@@ -17,12 +18,9 @@ export const UseEmployeesStore = create<State>()((set, get) => {
         selectedEmployee: null,
         isLoading: true,
         fetchEmployees: async () => {
-            const res = await fetch(`https://localhost:5001/api/medical-leave/Employee/getAllEmployees`)
-            const json = await res.json()
-
-            const employees = json
-            const isLoading = false
+            const employees = await EmployeeService.fetchEmployees()
             set({ employees })
+            const isLoading = false
             set({ isLoading })
         },
         selectEmployee: (employeeId: string) => {
