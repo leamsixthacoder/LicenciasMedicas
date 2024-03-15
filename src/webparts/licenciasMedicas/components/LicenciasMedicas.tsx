@@ -19,8 +19,6 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
   const selectedEmployee = UseEmployeesStore((state) => state.selectedEmployee)
   const registerLeave = UseRegisterStore((state => state.registerLeave))
   const setRegisterLeave = UseRegisterStore((state => state.setRegisterLeave))
-  const setLeaveDays = UseRegisterStore((state => state.setLeaveDays))
-  const setTssRefound = UseRegisterStore((state => state.setTssRefound))
   const postRegisterLeave = UseRegisterStore((state => state.postRegisterLeave))
 
   useEffect(() => {
@@ -52,20 +50,19 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
 
   const handleInputChange = (value: any, stateName: string) => {
     if (selectedEmployee) {
-      if (stateName === 'TotalDays') setLeaveDays(value, selectedEmployee.Salary)
-      if (stateName === 'TSSRefund') setTssRefound(value)
-      setRegisterLeave(stateName, value)
+      const { Salary } = selectedEmployee
+      setRegisterLeave(stateName, value, Salary)
     }
   };
-  const sendRegisterLeave = async () => {
 
-    setRegisterLeave('DepartureDate', registerLeave.DepartureDate)
-    setRegisterLeave('EndDate', registerLeave.EndDate)
-    setRegisterLeave('ReEntryDate', registerLeave.ReEntryDate)
-    setRegisterLeave('DateRecieved', registerLeave.DateRecieved)
-    setRegisterLeave('Date', registerLeave.Date)
-    console.log(typeof(registerLeave.DepartureDate))
-     await postRegisterLeave(registerLeave)
+  const sendRegisterLeave = async () => {
+    const { DepartureDate, EndDate, ReEntryDate, DateRecieved, Date} = registerLeave
+    setRegisterLeave('DepartureDate', DepartureDate)
+    setRegisterLeave('EndDate', EndDate)
+    setRegisterLeave('ReEntryDate', ReEntryDate)
+    setRegisterLeave('DateRecieved', DateRecieved)
+    setRegisterLeave('Date', Date)
+    await postRegisterLeave(registerLeave)
   }
 
   return (
@@ -96,7 +93,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = () => {
         </div>
         <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasDatePickerComponent labelName='Inicio de licencia' isRequired stateName='DepartureDate' onChange={handleInputChange} placeholder='Seleccionar fecha inicio....' value={registerLeave.DepartureDate} />
-          <LicenciasMedicasDatePickerComponent labelName='Fin de licencia' isRequired  stateName='EndDate' onChange={handleInputChange} placeholder='Seleccionar fecha fin....' value={registerLeave.EndDate} />
+          <LicenciasMedicasDatePickerComponent labelName='Fin de licencia' isRequired stateName='EndDate' onChange={handleInputChange} placeholder='Seleccionar fecha fin....' value={registerLeave.EndDate} />
         </div>
         <div className='mt-2 flex justify-between gap-4'>
           <LicenciasMedicasDatePickerComponent labelName='Reingreso' stateName='ReEntryDate' onChange={handleInputChange} placeholder='Seleccionar fecha Reingreso....' value={registerLeave.ReEntryDate} />
