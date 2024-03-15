@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from "zustand";
 import { type RegistroLicencia } from "../types/IRegistroLicencia";
+import { calculateCost } from "../logic/CalculateCost";
+import { RegisterLeaveService } from "../services/RegisterLeaveService";
 
-interface RegisterState {
+export interface RegisterState {
     registerLeave: RegistroLicencia,
-    setRegisterLeave: (stateName: string, value: any) => void
-    setLeaveDays: (amountOfDays: number, payRate: number) => void
+    setRegisterLeave: (stateName: string, value: any, payRate?: number) => void
+    setLeaveTotalCost: (leaveTotalCost: number) => void
     postRegisterLeave: (registerLeave: RegistroLicencia) => Promise<void>
-    setTssRefound: (amount: number) => void
+    calculateCost: (totalDays: number | null, salary: number, tssRefound: number | null) => void
 }
 export const UseRegisterStore = create<RegisterState>()((set, get) => {
     return {
@@ -29,62 +32,44 @@ export const UseRegisterStore = create<RegisterState>()((set, get) => {
             Date: new Date(),
             User: ''
         },
-        setRegisterLeave: (stateName: string, value: any) => {
-            const { registerLeave } = get();
-            let updatedValue: any;
-        
+        setRegisterLeave: (stateName: string, value: any, payRate?: number) => {
+            const { registerLeave, setLeaveTotalCost } = get();
+            let updatedValue: any
+            let isCalculate: boolean = false
             if (stateName === 'TotalDays' || stateName === 'TSSRefund' || stateName === 'TotalHours') {
                 if (typeof value === 'string' && !isNaN(parseFloat(value))) {
                     updatedValue = parseFloat(value);
+                    isCalculate = true
                 } else {
-                    updatedValue = null; 
+                    updatedValue = null;
                 }
             } else {
                 updatedValue = value;
+
             }
-        
+
             const updatedLeave = { ...registerLeave, [stateName]: updatedValue };
             set({ registerLeave: updatedLeave });
+            if (isCalculate) {
+                console.log(updatedLeave.TotalDays )
+                console.log( payRate)
+                console.log(updatedLeave.TSSRefund)
+                const updatedLeaveCost = calculateCost(updatedLeave.TotalDays, payRate, updatedLeave.TSSRefund)
+                setLeaveTotalCost(updatedLeaveCost)
+            }
         },
-        
-        setLeaveDays: (amountOfDays: number, payRate: number) => {
-            const calculateCost = (payRate / 23.83) * amountOfDays
-            const { registerLeave } = get()
-            const updatedCost = Math.round(calculateCost);
-            const updatedLeave = { ...registerLeave, LicenseCost: updatedCost >= 0 ? updatedCost : 0 }
-            set({ registerLeave: updatedLeave })
 
-        },
-        setTssRefound: (amount: number) => {
+        setLeaveTotalCost: (leaveTotalCost: number) => {
             const { registerLeave } = get()
-            const originalLicenseCost = registerLeave.LicenseCost
-            const updatedLicenseCost = originalLicenseCost !== null ? originalLicenseCost - amount : null
-            const updatedLeave = {...registerLeave, TSSRefund: amount, LicenseCost: updatedLicenseCost}
-            set({ registerLeave: updatedLeave });
+            const updatedLeave = { ...registerLeave, LicenseCost: leaveTotalCost >= 0 ? leaveTotalCost : 0 }
+            set({ registerLeave: updatedLeave })
 
         },
 
         postRegisterLeave: async (registerLeave: RegistroLicencia) => {
-            try {
-                const response = await fetch('https://localhost:5001/api/medical-leave/MedicalLeave', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(registerLeave)
-                });
-
-                if (!response.ok) {
-                    throw new Error('Algo anda mal')
-                }
-
-                const responseData = await response.json();
-                console.log('Guardado exitosamente')
-                return responseData
-            } catch (error) {
-                console.log('Error')
-            }
-        }
+            await RegisterLeaveService.postRegisterLeave(registerLeave)
+        },
+        calculateCost: calculateCost,
 
     }
 })
