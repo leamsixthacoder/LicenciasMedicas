@@ -2,20 +2,28 @@ import { create } from "zustand";
 import { type Employees } from "../types/IEmployees";
 import { EmployeeService } from "../services/EmployeeService"
 
+const initialEmployees: Employees = {
 
+    Name: '',
+    Position: '',
+    Area: '',
+    Department: '',
+    EmployeeId: '',
+    Salary: 0
+};
 interface State {
-    employees: Employees[] 
-    selectedEmployee: Employees | null
+    employees: Employees[]
+    selectedEmployee: Employees 
     fetchEmployees: () => Promise<void>
     isLoading: boolean
     selectEmployee: (employeeId: string) => void
-
+    resetSelectedEmployeeState: () => void
 }
 
 export const UseEmployeesStore = create<State>()((set, get) => {
     return {
         employees: [],
-        selectedEmployee: null,
+        selectedEmployee: initialEmployees,
         isLoading: true,
         fetchEmployees: async () => {
             const employees = await EmployeeService.fetchEmployees()
@@ -27,7 +35,11 @@ export const UseEmployeesStore = create<State>()((set, get) => {
             const { employees } = get()
             const newEmployee = [...employees]
             const selectedEmployee = newEmployee.find((e: Employees) => e.EmployeeId === employeeId)
-            set({selectedEmployee})
+            set({ selectedEmployee })
         },
+        resetSelectedEmployeeState: () => {
+            const selectedEmployee = initialEmployees
+            set({ selectedEmployee })
+        }
     }
 })
