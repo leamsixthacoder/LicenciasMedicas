@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react"
 import { ILicenciasMedicasSelectComponentProps } from "./ILicenciasMedicasSelectComponentProps"
+// import { useState } from "react"
 import Select from 'react-select'
 const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponentProps> = (props) => {
-    const { labelFor, labelName, options, isLoading, onSelect, isRequired } = props
+    // const [selectedOption, setSelectedOption] = useState<any>(null)
+    const { labelFor, labelName, options, isLoading, onSelect, isRequired, selectedValue,setSelectedValue } = props
 
 
     const handleClick = (selectedOption: any) => {
         onSelect(selectedOption)
+        setSelectedValue(selectedOption);
     }
-
-
-
     return (
 
         <div className="w-2/4">
@@ -20,7 +20,7 @@ const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponent
             </label>
             <div className="mt-2">
 
-                <Select options={options} onChange={handleClick} isLoading={isLoading} className="box-border w-full rounded-sm h-[30px] border-2 border-[#0058a6] " />
+                <Select options={options} value={selectedValue} onChange={handleClick} isLoading={isLoading} className="box-border w-full rounded-sm h-[30px] border-2 border-[#0058a6] " />
             </div>
         </div>
 
