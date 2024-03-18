@@ -2,7 +2,7 @@ import { Employees } from "../types/IEmployees";
 
 const fetchEmployees = async (): Promise<Employees[]> => {
     try {
-        const response = await fetch(`https://localhost:5001/api/medical-leave/Employee/getAllEmployees`);
+        const response = await fetch(`https://apisadministrativos.azurewebsites.net/SharepointAPIs/api/medical-leave/Employee/getAllEmployees`);
         
         if (!response.ok) {
             throw new Error('Error al cargar colaboradores');

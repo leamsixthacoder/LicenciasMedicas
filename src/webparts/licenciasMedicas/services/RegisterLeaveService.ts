@@ -2,7 +2,7 @@ import { RegistroLicencia } from "../types/IRegistroLicencia";
 
 const postRegisterLeave = async (registerLeave: RegistroLicencia) => {
     try {
-        const response = await fetch('https://localhost:5001/api/medical-leave/MedicalLeave', {
+        const response = await fetch('https://apisadministrativos.azurewebsites.net/SharepointAPIs/api/medical-leave/MedicalLeave', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
