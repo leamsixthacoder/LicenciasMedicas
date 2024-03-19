@@ -2,13 +2,13 @@ import * as React from "react"
 import { ILicenciasMedicasButtonComponent } from "./ILicenciasMedicasButtonComponent"
 
 const LicenciasMedicasButtonComponent: React.FC<ILicenciasMedicasButtonComponent> = (props) => {
-    const {buttonName, buttonStyle, disabled, onClick} =props
-
+    const {buttonName, buttonStyle, isDisabled, onClick} =props
+    
     const handleOnClick = () => {
         onClick()
     }
     return (
-        <button className={buttonStyle} disabled={disabled} onClick={handleOnClick}>{buttonName}</button>
+        <button className={`${buttonStyle} ${isDisabled ? `bg-slate-400 text-gray-500`: ``}`} disabled={isDisabled} onClick={handleOnClick}>{buttonName}</button>
     )
 }
 

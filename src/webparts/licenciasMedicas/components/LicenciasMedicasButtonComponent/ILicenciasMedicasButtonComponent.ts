@@ -1,6 +1,6 @@
 export interface ILicenciasMedicasButtonComponent {
     buttonName: string,
     buttonStyle:string,
-    disabled?: boolean,
+    isDisabled?: boolean,
     onClick: () =>  void
 }
