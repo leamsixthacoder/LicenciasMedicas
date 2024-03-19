@@ -4,14 +4,14 @@ import { ILicenciasMedicasDatePickerComponent } from "./ILicenciasMedicasDatePic
 import { DatePicker, DayOfWeek } from "office-ui-fabric-react";
 import { DatePickerStrings } from '../../loc/datepickerStrings';
 import * as moment from 'moment';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const LicenciasMedicasDatePickerComponent: React.FC<ILicenciasMedicasDatePickerComponent> = (props) => {
     const { labelName, placeholder, stateName, onChange, value, isRequired } = props;
-    const [isValueChanged, setIsValueChanged] = useState(false)
+    // const [isValueChanged, setIsValueChanged] = useState(false)
 
     const handleOnChange = (selectedDate: Date | string) => {
-        setIsValueChanged(true)
+        // setIsValueChanged(true)
         if (onChange) {
             onChange(selectedDate, stateName);
         }
@@ -20,7 +20,7 @@ const LicenciasMedicasDatePickerComponent: React.FC<ILicenciasMedicasDatePickerC
     const onFormatDate = (date?: Date) => {
         return moment(date).format("DD/MM/YYYY")
     }
-    const valueDate = isValueChanged ? moment(value).toDate() : undefined;
+    // const valueDate = isValueChanged ? moment(value).toDate() : moment().toDate();
     return (
         <div className="w-2/4">
             <label className='block text-sm font-medium leading-6 text-gray-900'><strong className='text-red-600'>{isRequired ? '*' : ''}</strong>{' '}{labelName}</label>
@@ -41,7 +41,7 @@ const LicenciasMedicasDatePickerComponent: React.FC<ILicenciasMedicasDatePickerC
                 }}
 
                 placeholder={placeholder}
-                value={valueDate}
+                value={moment(value).toDate()}
             />
         </div>
 

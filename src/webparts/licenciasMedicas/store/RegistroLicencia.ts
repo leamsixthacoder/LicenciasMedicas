@@ -29,22 +29,20 @@ export interface RegisterState {
     setLeaveTotalCost: (leaveTotalCost: number) => void
     postRegisterLeave: (registerLeave: RegistroLicencia) => Promise<void>
     calculateCost: (totalDays: number | null, salary: number, tssRefound: number | null) => void
+    isSuccesful: boolean
     resetRegisterLeaveState: () => void
 }
 export const UseRegisterStore = create<RegisterState>()((set, get) => {
     return {
         registerLeave: initialRegisterLeave,
-        setRegisterLeave: (stateName: string, value: any, payRate?: number) => {
+        isSuccesful: false,
+        setRegisterLeave: (stateName: string, value: any, payRate: number) => {
             const { registerLeave, setLeaveTotalCost } = get();
             let updatedValue: any
             let isCalculate: boolean = false
             if (stateName === 'TotalDays' || stateName === 'TSSRefund' || stateName === 'TotalHours') {
-                if (typeof value === 'string' && !isNaN(parseFloat(value))) {
-                    updatedValue = parseFloat(value);
-                    isCalculate = true
-                } else {
-                    updatedValue = null;
-                }
+                updatedValue = parseFloat(value);
+                isCalculate = true
             } else {
                 updatedValue = value;
 
@@ -53,9 +51,6 @@ export const UseRegisterStore = create<RegisterState>()((set, get) => {
             const updatedLeave = { ...registerLeave, [stateName]: updatedValue };
             set({ registerLeave: updatedLeave });
             if (isCalculate) {
-                console.log(updatedLeave.TotalDays )
-                console.log( payRate)
-                console.log(updatedLeave.TSSRefund)
                 const updatedLeaveCost = calculateCost(updatedLeave.TotalDays, payRate, updatedLeave.TSSRefund)
                 setLeaveTotalCost(updatedLeaveCost)
             }
@@ -69,12 +64,17 @@ export const UseRegisterStore = create<RegisterState>()((set, get) => {
         },
 
         postRegisterLeave: async (registerLeave: RegistroLicencia) => {
-            await RegisterLeaveService.postRegisterLeave(registerLeave)
+
+            const { postRegisterLeave } = RegisterLeaveService
+            const isSuccesful = await postRegisterLeave(registerLeave)
+            console.log(isSuccesful)
+            set({ isSuccesful })
+
         },
         calculateCost: calculateCost,
         resetRegisterLeaveState: () => {
             const registerLeave = initialRegisterLeave
-            set({registerLeave})
+            set({ registerLeave })
         }
 
     }

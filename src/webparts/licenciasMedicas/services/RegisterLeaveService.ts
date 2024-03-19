@@ -11,15 +11,14 @@ const postRegisterLeave = async (registerLeave: RegistroLicencia) => {
         });
 
         if (!response.ok) {
-            throw new Error('Algo anda mal')
+            return false
         }
 
         const responseData = await response.json();
-        console.log('Guardado exitosamente')
         return responseData
     } catch (error) {
         console.log('Error')
-        throw error; // Re-throw the error to handle it at the calling site
+        return false// Re-throw the error to handle it at the calling site
     }
 }
 
