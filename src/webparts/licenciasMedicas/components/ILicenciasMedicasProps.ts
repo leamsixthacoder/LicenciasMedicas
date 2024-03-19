@@ -1,7 +1,7 @@
 export interface ILicenciasMedicasProps {
-  description: string;
-  isDarkTheme: boolean;
-  environmentMessage: string;
-  hasTeamsContext: boolean;
-  userDisplayName: string;
+  urlGetAllEmployees: string;
+  urlPostRegisterLeave: string;
+  EmailAdmUsers: string[];
+  userEmail: string;
+
 }
