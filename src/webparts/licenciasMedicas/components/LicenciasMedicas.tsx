@@ -13,7 +13,7 @@ import { UseRegisterStore } from '../store/RegistroLicencia';
 import { getValidation } from '../logic/Validation';
 import MedicalLeavePopupAlert from './MedicalLeavePopupAlert/MedicalLeavePopupAlert';
 import { Label } from 'office-ui-fabric-react';
-// import {LottiePlayer} from '@lottiefiles/rea'
+import { Player } from '@lottiefiles/react-lottie-player';
 interface ValidationMessage {
   [key: string]: string;
 }
@@ -190,17 +190,17 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
         </>
       ) : (
         <div style={{ textAlign: "center" }}>
-          {/* <LottiePlayer
+          <Player
             autoplay
             loop
             src="https://assets7.lottiefiles.com/packages/lf20_bdnjxekx.json"
             style={{ height: "300px", width: "300px" }}
             speed={0.7}
-           /> */}
+           />
           <Label
             style={{ color: "red", fontWeight: "bold", fontSize: "14px" }}
           >
-            {'No tiene acceso a este modulo'}
+            {'No tiene acceso a esta sección'}
           </Label>
         </div>
       )}
