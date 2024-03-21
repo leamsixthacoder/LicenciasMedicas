@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react"
 import { ILicenciasMedicasSelectComponentProps } from "./ILicenciasMedicasSelectComponentProps"
-// import { useState } from "react"
+
 import Select from 'react-select'
 const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponentProps> = (props) => {
-    // const [selectedOption, setSelectedOption] = useState<any>(null)
     const { labelFor, labelName, options, isLoading, onSelect, isRequired, selectedValue,setSelectedValue } = props
-
 
     const handleClick = (selectedOption: any) => {
         onSelect(selectedOption)
