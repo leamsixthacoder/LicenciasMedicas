@@ -55,14 +55,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
     return options
   }
 
-  const differenceInDays = (startDate: Date, endDate: Date): number => {
-    const utcStartDate = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
-    const utcEndDate = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
 
-    // Calculate the difference in milliseconds
-    const diffMilliseconds = utcEndDate - utcStartDate;    // Convert milliseconds to days
-    return Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24));
-  }
 
 
   const handleSelectEmployee = async (selectedOption: any) => {
@@ -82,9 +75,9 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
     if (selectedEmployee) {
       const { Salary } = selectedEmployee
       setRegisterLeave(stateName, value, Salary)
-      const { DepartureDate, EndDate } = registerLeave
-      if (stateName === 'DepartureDate') setRegisterLeave('TotalDays', differenceInDays(EndDate, value), Salary)
-      if (stateName === 'EndDate') setRegisterLeave('TotalDays', differenceInDays(DepartureDate, value), Salary)
+      // const { DepartureDate, EndDate } = registerLeave
+      // if (stateName === 'DepartureDate') setRegisterLeave('TotalDays', differenceInDays(EndDate, value), Salary)
+      // if (stateName === 'EndDate') setRegisterLeave('TotalDays', differenceInDays(DepartureDate, value), Salary)
     }
   };
 
@@ -120,8 +113,11 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
         <>
           <div className={`${styles.borderBottom} flex justify-between`}>
             <h1 className='text-[#0058a6] ml-4 mb-2 text-2xl'>Registro Licencia Médica</h1>
-            <div className='flex text- '>
-              <LicenciasMedicasButtonComponent onClick={cleanState} buttonName='Reporte' buttonStyle='self-center py-[6px] hover:cursor-pointer mt-2 border-0 rounded-sm px-6 bg-green-500 text-base text-sky-50 font-bold' />
+            <div className='flex'>
+              <a target='_blank' rel="noopener noreferrer" className='self-center flex justify-center gap-[2px] no-underline py-[6px] hover:cursor-pointer mt-2 border-0 rounded-sm px-6 bg-yellow-500 text-base text-sky-50 font-bold' href='https://app.powerbi.com/groups/me/reports/13b49798-bff5-4afc-815e-3ead70119bd7/ReportSection?ctid=9f7ea1de-9020-4bfd-8871-04f7751b87eb&experience=power-bi'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-chart-bar"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M9 8m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M15 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 20l14 0" /></svg>
+                Reporte
+              </a>
             </div>
           </div>
           <div className='flex justify-end my-1'>
@@ -140,7 +136,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
             </div>
             <div className='mt-2 flex  gap-4'>
               <LicenciasMedicasInputComponent labelName='Diagnóstico' isRequired stateName='Diagnostic' isDisabled={false} inputType='text' onChange={handleInputChange} value={registerLeave.Diagnostic} />
-              <div className=' flex justify-between gap-4'>
+              <div className=' flex justify-between gap-4 grow'>
                 <LicenciasMedicasInputComponent labelName='Salario' stateName='salary' isDisabled inputType='text' value={'DOP: ' + selectedEmployee?.Salary.toFixed(2)} />
                 <LicenciasMedicasInputComponent labelName='Horas diarias de trabajo' stateName='TotalHours' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TotalHours} />
               </div>
@@ -156,7 +152,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
             </div>
             <div className='mt-2 flex  gap-4'>
               <LicenciasMedicasInputComponent labelName='Cant dias' stateName='TotalDays' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TotalDays} />
-              <div className=' flex justify-between gap-4'>
+              <div className=' flex justify-between gap-4 grow'>
                 <LicenciasMedicasInputComponent labelName='Costo licencia' stateName='LicenseCost' isDisabled inputType='text' value={'DOP: ' + registerLeave.LicenseCost} />
                 <LicenciasMedicasInputComponent labelName='Rembolso TSS' stateName='TSSRefund' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TSSRefund} />
               </div>
@@ -196,7 +192,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
             src="https://assets7.lottiefiles.com/packages/lf20_bdnjxekx.json"
             style={{ height: "300px", width: "300px" }}
             speed={0.7}
-           />
+          />
           <Label
             style={{ color: "red", fontWeight: "bold", fontSize: "14px" }}
           >
