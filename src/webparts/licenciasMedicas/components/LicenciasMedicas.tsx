@@ -59,14 +59,17 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
 
 
   const handleSelectEmployee = async (selectedOption: any) => {
+    cleanState()
     const selectedEmployeeId = selectedOption.value;
     selectEmployee(selectedEmployeeId)
     const selectedEmployeeProps = employees.find(employee => employee.EmployeeId === selectedEmployeeId)
     if (selectedEmployeeProps) {
+      const user = userEmail.replace('@adm.unapec.edu.do', '')
       setRegisterLeave('Name', selectedEmployeeProps.Name)
       setRegisterLeave('Code', selectedEmployeeProps.EmployeeId)
       setRegisterLeave('Position', selectedEmployeeProps.Position)
       setRegisterLeave('Area', selectedEmployeeProps.Area)
+      setRegisterLeave('User', user)
     }
   };
 
@@ -89,6 +92,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
   const sendRegisterLeave = async () => {
     handleValidationMessage()
     if (Object.keys(validationMessage).length === 0) {
+      console.log(registerLeave)
       await postRegisterLeave(registerLeave)
       cleanState()
       setIsVisible(true)
