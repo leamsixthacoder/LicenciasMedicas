@@ -1,5 +1,5 @@
 import * as React from "react"
-import { IPopupAlert } from "./IPopupAlert";
+import { IPopupAlert } from "./IPopupAlertProps";
 
 
 const PopupAlert: React.FC<IPopupAlert> = (props) => {

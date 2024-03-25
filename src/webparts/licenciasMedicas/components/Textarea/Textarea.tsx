@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ITextarea } from "./ITextarea"
+import { ITextarea } from "./ITextareaProps"
 import { TextField } from "office-ui-fabric-react"
 
 const Textarea: React.FC<ITextarea> = (props) => {
