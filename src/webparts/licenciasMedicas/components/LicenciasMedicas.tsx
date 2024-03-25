@@ -4,7 +4,7 @@ import styles from './LicenciasMedicas.module.scss';
 import type { ILicenciasMedicasProps } from './ILicenciasMedicasProps';
 import Input from './Input/Input'
 import SelectComponent from './SelectComponent/SelectComponent';
-import LicenciasMedicasDatePickerComponent from './LicenciasMedicasDatePickerComponent/LicenciasMedicasDatePickerComponent';
+import DatePickerComponent from './DatePickerComponent/DatePickerComponent';
 import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
 import Textarea from './Textarea/Textarea';
 import { UseEmployeesStore } from '../store/employee';
@@ -147,12 +147,12 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
 
             </div>
             <div className='mt-2 flex justify-between gap-4'>
-              <LicenciasMedicasDatePickerComponent labelName='Inicio de licencia' isRequired stateName='DepartureDate' onChange={handleInputChange} placeholder='Seleccionar fecha inicio....' value={registerLeave.DepartureDate} />
-              <LicenciasMedicasDatePickerComponent labelName='Fin de licencia' isRequired stateName='EndDate' onChange={handleInputChange} placeholder='Seleccionar fecha fin....' value={registerLeave.EndDate} />
+              <DatePickerComponent labelName='Inicio de licencia' isRequired stateName='DepartureDate' onChange={handleInputChange} placeholder='Seleccionar fecha inicio....' value={registerLeave.DepartureDate} />
+              <DatePickerComponent labelName='Fin de licencia' isRequired stateName='EndDate' onChange={handleInputChange} placeholder='Seleccionar fecha fin....' value={registerLeave.EndDate} />
             </div>
             <div className='mt-2 flex justify-between gap-4'>
-              <LicenciasMedicasDatePickerComponent labelName='Reingreso' stateName='ReEntryDate' onChange={handleInputChange} placeholder='Seleccionar fecha Reingreso....' value={registerLeave.ReEntryDate} />
-              <LicenciasMedicasDatePickerComponent labelName='Recibida' stateName='DateRecieved' onChange={handleInputChange} placeholder='Seleccionar fecha Recibida....' value={registerLeave.DateRecieved} />
+              <DatePickerComponent labelName='Reingreso' stateName='ReEntryDate' onChange={handleInputChange} placeholder='Seleccionar fecha Reingreso....' value={registerLeave.ReEntryDate} />
+              <DatePickerComponent labelName='Recibida' stateName='DateRecieved' onChange={handleInputChange} placeholder='Seleccionar fecha Recibida....' value={registerLeave.DateRecieved} />
             </div>
             <div className='mt-2 flex  gap-4'>
               <Input labelName='Cant dias' stateName='TotalDays' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TotalDays} />

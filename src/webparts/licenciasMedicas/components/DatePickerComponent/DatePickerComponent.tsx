@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
-import { ILicenciasMedicasDatePickerComponent } from "./ILicenciasMedicasDatePickerComponent"
+import { IDatePickerComponent } from "./IDatePickerComponentProps"
 import { DatePicker, DayOfWeek } from "office-ui-fabric-react";
 import { DatePickerStrings } from '../../loc/datepickerStrings';
 import * as moment from 'moment';
 // import { useState } from 'react';
 
-const LicenciasMedicasDatePickerComponent: React.FC<ILicenciasMedicasDatePickerComponent> = (props) => {
+const DatePickerComponent: React.FC<IDatePickerComponent> = (props) => {
     const { labelName, placeholder, stateName, onChange, value, isRequired } = props;
     // const [isValueChanged, setIsValueChanged] = useState(false)
 
@@ -47,4 +47,4 @@ const LicenciasMedicasDatePickerComponent: React.FC<ILicenciasMedicasDatePickerC
 
     )
 }
-export default LicenciasMedicasDatePickerComponent
+export default DatePickerComponent

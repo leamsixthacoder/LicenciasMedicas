@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface ILicenciasMedicasDatePickerComponent {
+export interface IDatePickerComponent {
     labelName: string,
     placeholder:string,   
     stateName:string, 
