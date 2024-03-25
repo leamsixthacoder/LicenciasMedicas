@@ -1,8 +1,8 @@
 import * as React from "react"
-import { IMedicalLeavePopupAlert } from "./IMedicalLeavePopupAlert";
+import { IPopupAlert } from "./IPopupAlert";
 
 
-const MedicalLeavePopupAlert: React.FC<IMedicalLeavePopupAlert> = (props) => {
+const PopupAlert: React.FC<IPopupAlert> = (props) => {
 
     const { message, styles } = props
     return (
@@ -12,4 +12,4 @@ const MedicalLeavePopupAlert: React.FC<IMedicalLeavePopupAlert> = (props) => {
     )
 }
 
-export default MedicalLeavePopupAlert
+export default PopupAlert

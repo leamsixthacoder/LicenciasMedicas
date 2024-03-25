@@ -11,7 +11,7 @@ import { UseEmployeesStore } from '../store/employee';
 import { useEffect, useState } from 'react';
 import { UseRegisterStore } from '../store/RegistroLicencia';
 import { getValidation } from '../logic/Validation';
-import MedicalLeavePopupAlert from './MedicalLeavePopupAlert/MedicalLeavePopupAlert';
+import PopupAlert from './PopupAlert/PopupAlert';
 import { Label } from 'office-ui-fabric-react';
 import { Player } from '@lottiefiles/react-lottie-player';
 interface ValidationMessage {
@@ -174,9 +174,9 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
             {
               isVisible && (
                 isSuccesful ? (
-                  <MedicalLeavePopupAlert message='Datos guardados exitosamente' styles='bg-green-50 text-green-600' />
+                  <PopupAlert message='Datos guardados exitosamente' styles='bg-green-50 text-green-600' />
                 ) : (
-                  <MedicalLeavePopupAlert message='Algo salio mal, intentelo de nuevo mas tarde' styles='bg-red-300 text-red-600' />
+                  <PopupAlert message='Algo salio mal, intentelo de nuevo mas tarde' styles='bg-red-300 text-red-600' />
                 )
               )
             }
