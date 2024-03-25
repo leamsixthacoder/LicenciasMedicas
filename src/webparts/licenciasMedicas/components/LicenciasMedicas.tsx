@@ -6,7 +6,7 @@ import LicenciasMedicasInputComponent from './LicenciasMedicasInputComponent/Lic
 import LicenciasMedicasSelectComponent from './LicenciasMedicasSelectComponent/LicenciasMedicasSelectComponent';
 import LicenciasMedicasDatePickerComponent from './LicenciasMedicasDatePickerComponent/LicenciasMedicasDatePickerComponent';
 import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
-import LicenciasMedicasTextareaComponent from './LicenciasMedicasTextareaComponent/LicenciasMedicasTextareaComponent';
+import LicenciasMedicasTextareaComponent from './Textarea/LicenciasMedicasTextareaComponent';
 import { UseEmployeesStore } from '../store/employee';
 import { useEffect, useState } from 'react';
 import { UseRegisterStore } from '../store/RegistroLicencia';
