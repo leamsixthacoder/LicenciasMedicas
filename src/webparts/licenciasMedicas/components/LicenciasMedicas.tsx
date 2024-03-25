@@ -5,7 +5,7 @@ import type { ILicenciasMedicasProps } from './ILicenciasMedicasProps';
 import Input from './Input/Input'
 import SelectComponent from './SelectComponent/SelectComponent';
 import DatePickerComponent from './DatePickerComponent/DatePickerComponent';
-import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
+import Button from './Button/Button';
 import Textarea from './Textarea/Textarea';
 import { UseEmployeesStore } from '../store/employee';
 import { useEffect, useState } from 'react';
@@ -184,8 +184,8 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
 
           </form>
           <div className='my-4 flex justify-end gap-4'>
-            <LicenciasMedicasButtonComponent onClick={sendRegisterLeave} buttonName='Guardar' isDisabled={Object.keys(validationMessage).length > 0} buttonStyle='py-[6px] hover:cursor-pointer border-0 rounded-sm px-5 text-sm bg-sky-700 text-white font-bold' />
-            <LicenciasMedicasButtonComponent onClick={cleanState} buttonName='Limpiar' buttonStyle='py-[6px] hover:cursor-pointer border-0 rounded-sm px-5 text-sm bg-sky-200 text-sky-700 font-bold' />
+            <Button onClick={sendRegisterLeave} buttonName='Guardar' isDisabled={Object.keys(validationMessage).length > 0} buttonStyle='py-[6px] hover:cursor-pointer border-0 rounded-sm px-5 text-sm bg-sky-700 text-white font-bold' />
+            <Button onClick={cleanState} buttonName='Limpiar' buttonStyle='py-[6px] hover:cursor-pointer border-0 rounded-sm px-5 text-sm bg-sky-200 text-sky-700 font-bold' />
           </div>
         </>
       ) : (

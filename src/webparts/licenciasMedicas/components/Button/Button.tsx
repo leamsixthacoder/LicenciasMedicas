@@ -1,7 +1,7 @@
 import * as React from "react"
-import { ILicenciasMedicasButtonComponent } from "./ILicenciasMedicasButtonComponent"
+import { IButton } from "./IButtonProps"
 
-const LicenciasMedicasButtonComponent: React.FC<ILicenciasMedicasButtonComponent> = (props) => {
+const Button: React.FC<IButton> = (props) => {
     const {buttonName, buttonStyle, isDisabled, onClick} =props
     
     const handleOnClick = () => {
@@ -12,4 +12,4 @@ const LicenciasMedicasButtonComponent: React.FC<ILicenciasMedicasButtonComponent
     )
 }
 
-export default LicenciasMedicasButtonComponent
+export default Button
