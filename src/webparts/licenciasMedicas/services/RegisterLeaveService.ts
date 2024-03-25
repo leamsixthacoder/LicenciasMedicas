@@ -1,4 +1,4 @@
-import { RegistroLicencia } from "../types/IRegistroLicencia";
+import { RegistroLicencia } from "../types/IRegisterLeave";
 
 const postRegisterLeave = async (registerLeave: RegistroLicencia) => {
     try {

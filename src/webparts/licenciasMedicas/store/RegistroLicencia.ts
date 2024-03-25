@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from "zustand";
-import { type RegistroLicencia } from "../types/IRegistroLicencia";
+import { type RegisterLeave } from "../types/IRegisterLeave";
 import { calculateCost } from "../logic/CalculateCost";
 import { RegisterLeaveService } from "../services/RegisterLeaveService";
 
-const initialRegisterLeave: RegistroLicencia = {
+const initialRegisterLeave: RegisterLeave = {
     Code: '',
     Name: '',
     Position: '',
@@ -24,10 +24,10 @@ const initialRegisterLeave: RegistroLicencia = {
     User: ''
 };
 export interface RegisterState {
-    registerLeave: RegistroLicencia,
+    registerLeave: RegisterLeave,
     setRegisterLeave: (stateName: string, value: any, payRate?: number) => void
     setLeaveTotalCost: (leaveTotalCost: number) => void
-    postRegisterLeave: (registerLeave: RegistroLicencia) => Promise<void>
+    postRegisterLeave: (registerLeave: RegisterLeave) => Promise<void>
     calculateCost: (totalDays: number | null, salary: number, tssRefound: number | null) => void
     isSuccesful: boolean
     resetRegisterLeaveState: () => void
@@ -63,7 +63,7 @@ export const UseRegisterStore = create<RegisterState>()((set, get) => {
 
         },
 
-        postRegisterLeave: async (registerLeave: RegistroLicencia) => {
+        postRegisterLeave: async (registerLeave: RegisterLeave) => {
 
             const { postRegisterLeave } = RegisterLeaveService
             const isSuccesful = await postRegisterLeave(registerLeave)

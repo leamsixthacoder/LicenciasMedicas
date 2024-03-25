@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { RegistroLicencia } from "../types/IRegistroLicencia";
+import { RegisterLeave } from "../types/IRegisterLeave";
 
-export const getValidation = (registerLeave: RegistroLicencia) => {
+export const getValidation = (registerLeave: RegisterLeave) => {
 
     const errors: any = {};
 
@@ -13,5 +13,4 @@ export const getValidation = (registerLeave: RegistroLicencia) => {
         errors.EndDate = 'La fecha de fin no puede ser anterior a la fecha de inicio';
     }
     return errors
-
 }
