@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styles from './LicenciasMedicas.module.scss';
 import type { ILicenciasMedicasProps } from './ILicenciasMedicasProps';
-import LicenciasMedicasInputComponent from './LicenciasMedicasInputComponent/LicenciasMedicasInputComponent'
+import Input from './Input/Input'
 import SelectComponent from './SelectComponent/SelectComponent';
 import LicenciasMedicasDatePickerComponent from './LicenciasMedicasDatePickerComponent/LicenciasMedicasDatePickerComponent';
 import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
@@ -131,18 +131,18 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
 
             <div className='mt-2 flex justify-between gap-4'>
               <SelectComponent labelName='Colaborador' isRequired labelFor='Name' options={getEmployeeOptions()} selectedValue={selectedValue} setSelectedValue={setSelectedValue} isLoading={isLoading} onSelect={handleSelectEmployee} />
-              <LicenciasMedicasInputComponent labelName='Posición' stateName='Position' onChange={handleInputChange} isDisabled inputType='text' value={selectedEmployee?.Position} />
+              <Input labelName='Posición' stateName='Position' onChange={handleInputChange} isDisabled inputType='text' value={selectedEmployee?.Position} />
             </div>
 
             <div className='mt-2 flex justify-between gap-4'>
-              <LicenciasMedicasInputComponent labelName='Departamento' stateName='departamento' isDisabled inputType='text' value={selectedEmployee?.Department} />
-              <LicenciasMedicasInputComponent labelName='Area' stateName='Area' onChange={handleInputChange} isDisabled inputType='text' value={selectedEmployee?.Area} />
+              <Input labelName='Departamento' stateName='departamento' isDisabled inputType='text' value={selectedEmployee?.Department} />
+              <Input labelName='Area' stateName='Area' onChange={handleInputChange} isDisabled inputType='text' value={selectedEmployee?.Area} />
             </div>
             <div className='mt-2 flex  gap-4'>
-              <LicenciasMedicasInputComponent labelName='Diagnóstico' isRequired stateName='Diagnostic' isDisabled={false} inputType='text' onChange={handleInputChange} value={registerLeave.Diagnostic} />
+              <Input labelName='Diagnóstico' isRequired stateName='Diagnostic' isDisabled={false} inputType='text' onChange={handleInputChange} value={registerLeave.Diagnostic} />
               <div className=' flex justify-between gap-4 grow'>
-                <LicenciasMedicasInputComponent labelName='Salario' stateName='salary' isDisabled inputType='text' value={'DOP: ' + selectedEmployee?.Salary.toFixed(2)} />
-                <LicenciasMedicasInputComponent labelName='Horas diarias de trabajo' stateName='TotalHours' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TotalHours} />
+                <Input labelName='Salario' stateName='salary' isDisabled inputType='text' value={'DOP: ' + selectedEmployee?.Salary.toFixed(2)} />
+                <Input labelName='Horas diarias de trabajo' stateName='TotalHours' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TotalHours} />
               </div>
 
             </div>
@@ -155,10 +155,10 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
               <LicenciasMedicasDatePickerComponent labelName='Recibida' stateName='DateRecieved' onChange={handleInputChange} placeholder='Seleccionar fecha Recibida....' value={registerLeave.DateRecieved} />
             </div>
             <div className='mt-2 flex  gap-4'>
-              <LicenciasMedicasInputComponent labelName='Cant dias' stateName='TotalDays' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TotalDays} />
+              <Input labelName='Cant dias' stateName='TotalDays' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TotalDays} />
               <div className=' flex justify-between gap-4 grow'>
-                <LicenciasMedicasInputComponent labelName='Costo licencia' stateName='LicenseCost' isDisabled inputType='text' value={'DOP: ' + registerLeave.LicenseCost} />
-                <LicenciasMedicasInputComponent labelName='Rembolso TSS' stateName='TSSRefund' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TSSRefund} />
+                <Input labelName='Costo licencia' stateName='LicenseCost' isDisabled inputType='text' value={'DOP: ' + registerLeave.LicenseCost} />
+                <Input labelName='Rembolso TSS' stateName='TSSRefund' isDisabled={false} inputType='number' onChange={handleInputChange} value={registerLeave.TSSRefund} />
               </div>
 
             </div>

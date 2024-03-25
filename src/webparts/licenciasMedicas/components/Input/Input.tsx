@@ -1,7 +1,7 @@
 import * as React from 'react'
-import type { ILicenciasMedicasInputComponentProps } from './ILicenciasMedicasInputComponentProps'
+import type { IInput } from './IInputProps'
 
-const LicenciasMedicasInputComponent: React.FC<ILicenciasMedicasInputComponentProps> = (props) => {
+const Input: React.FC<IInput> = (props) => {
 
     const { labelName, inputType, stateName, isDisabled, value, onChange, isRequired, placeholder} = props
     const disableAttribute = isDisabled ? { disabled: true } : {};
@@ -26,4 +26,4 @@ const LicenciasMedicasInputComponent: React.FC<ILicenciasMedicasInputComponentPr
     )
 }
 
-export default LicenciasMedicasInputComponent
+export default Input

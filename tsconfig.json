@@ -38,6 +38,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/webparts/licenciasMedicas/components/LicenciasMedicasInputComponent/**/*.tsx"
+    "src/webparts/licenciasMedicas/components/Input/**/*.tsx"
   ]
 }

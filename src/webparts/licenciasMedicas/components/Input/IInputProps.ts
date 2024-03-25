@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface ILicenciasMedicasInputComponentProps {
+export interface IInput {
     labelName: string,
     stateName:string,
     inputType: string,
