@@ -3,5 +3,4 @@ export interface ILicenciasMedicasProps {
   urlPostRegisterLeave: string;
   EmailAdmUsers: string[];
   userEmail: string;
-
 }
