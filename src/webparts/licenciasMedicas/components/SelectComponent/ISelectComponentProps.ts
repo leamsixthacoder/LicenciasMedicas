@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
-export interface ILicenciasMedicasSelectComponentProps {
+export interface ISelectComponent {
     labelName: string,
     labelFor: string,
     options: any[],

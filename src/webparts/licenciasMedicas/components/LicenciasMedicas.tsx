@@ -3,7 +3,7 @@ import * as React from 'react';
 import styles from './LicenciasMedicas.module.scss';
 import type { ILicenciasMedicasProps } from './ILicenciasMedicasProps';
 import LicenciasMedicasInputComponent from './LicenciasMedicasInputComponent/LicenciasMedicasInputComponent'
-import LicenciasMedicasSelectComponent from './LicenciasMedicasSelectComponent/LicenciasMedicasSelectComponent';
+import SelectComponent from './SelectComponent/SelectComponent';
 import LicenciasMedicasDatePickerComponent from './LicenciasMedicasDatePickerComponent/LicenciasMedicasDatePickerComponent';
 import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
 import Textarea from './Textarea/Textarea';
@@ -130,7 +130,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
           <form className='mt-10 mx-2'>
 
             <div className='mt-2 flex justify-between gap-4'>
-              <LicenciasMedicasSelectComponent labelName='Colaborador' isRequired labelFor='Name' options={getEmployeeOptions()} selectedValue={selectedValue} setSelectedValue={setSelectedValue} isLoading={isLoading} onSelect={handleSelectEmployee} />
+              <SelectComponent labelName='Colaborador' isRequired labelFor='Name' options={getEmployeeOptions()} selectedValue={selectedValue} setSelectedValue={setSelectedValue} isLoading={isLoading} onSelect={handleSelectEmployee} />
               <LicenciasMedicasInputComponent labelName='Posición' stateName='Position' onChange={handleInputChange} isDisabled inputType='text' value={selectedEmployee?.Position} />
             </div>
 

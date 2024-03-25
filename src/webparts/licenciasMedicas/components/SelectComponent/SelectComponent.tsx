@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react"
-import { ILicenciasMedicasSelectComponentProps } from "./ILicenciasMedicasSelectComponentProps"
+import { ISelectComponent } from "./ISelectComponentProps"
 
 import Select from 'react-select'
-const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponentProps> = (props) => {
+const SelectComponent: React.FC<ISelectComponent> = (props) => {
     const { labelFor, labelName, options, isLoading, onSelect, isRequired, selectedValue,setSelectedValue } = props
 
     const handleClick = (selectedOption: any) => {
@@ -25,4 +25,4 @@ const LicenciasMedicasSelectComponent: React.FC<ILicenciasMedicasSelectComponent
     )
 }
 
-export default LicenciasMedicasSelectComponent;
+export default SelectComponent;
