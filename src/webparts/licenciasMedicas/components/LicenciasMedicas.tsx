@@ -6,7 +6,7 @@ import LicenciasMedicasInputComponent from './LicenciasMedicasInputComponent/Lic
 import LicenciasMedicasSelectComponent from './LicenciasMedicasSelectComponent/LicenciasMedicasSelectComponent';
 import LicenciasMedicasDatePickerComponent from './LicenciasMedicasDatePickerComponent/LicenciasMedicasDatePickerComponent';
 import LicenciasMedicasButtonComponent from './LicenciasMedicasButtonComponent/LicenciasMedicasButtonComponent';
-import LicenciasMedicasTextareaComponent from './Textarea/LicenciasMedicasTextareaComponent';
+import Textarea from './Textarea/Textarea';
 import { UseEmployeesStore } from '../store/employee';
 import { useEffect, useState } from 'react';
 import { UseRegisterStore } from '../store/RegistroLicencia';
@@ -163,7 +163,7 @@ const LicenciasMedicas: React.FC<ILicenciasMedicasProps> = (props) => {
 
             </div>
             <div className='mt-2 flex justify-start'>
-              <LicenciasMedicasTextareaComponent labelName='Comentario' stateName='Comments' value={registerLeave.Comments} onChange={handleInputChange} />
+              <Textarea labelName='Comentario' stateName='Comments' value={registerLeave.Comments} onChange={handleInputChange} />
             </div>
             {Object.keys(validationMessage).length > 0 && (
 

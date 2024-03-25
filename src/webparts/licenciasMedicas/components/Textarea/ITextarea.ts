@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface ILicenciasMedicasTextareaComponent {
+export interface ITextarea {
     labelName: string,
     stateName:string,
     value?: any,

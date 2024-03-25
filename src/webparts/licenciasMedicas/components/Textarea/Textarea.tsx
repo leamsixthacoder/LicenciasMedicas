@@ -1,8 +1,8 @@
 import * as React from "react"
-import { ILicenciasMedicasTextareaComponent } from "./ILicenciasMedicasTextareaComponent"
+import { ITextarea } from "./ITextarea"
 import { TextField } from "office-ui-fabric-react"
 
-const LicenciasMedicasTextareaComponent: React.FC<ILicenciasMedicasTextareaComponent> = (props) => {
+const Textarea: React.FC<ITextarea> = (props) => {
 
     const { labelName, stateName, value, onChange } = props
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -32,4 +32,4 @@ const LicenciasMedicasTextareaComponent: React.FC<ILicenciasMedicasTextareaCompo
     )
 }
 
-export default LicenciasMedicasTextareaComponent
+export default Textarea
