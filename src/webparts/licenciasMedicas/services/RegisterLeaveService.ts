@@ -1,6 +1,6 @@
-import { RegistroLicencia } from "../types/IRegisterLeave";
+import { RegisterLeave } from "../types/IRegisterLeave";
 
-const postRegisterLeave = async (registerLeave: RegistroLicencia) => {
+const postRegisterLeave = async (registerLeave: RegisterLeave) => {
     try {
         const response = await fetch('https://apisadministrativos.azurewebsites.net/SharepointAPIs/api/medical-leave/MedicalLeave', {
             method: 'POST',
@@ -17,11 +17,9 @@ const postRegisterLeave = async (registerLeave: RegistroLicencia) => {
         const responseData = await response.json();
         return responseData
     } catch (error) {
-        console.log('Error')
         return false// Re-throw the error to handle it at the calling site
     }
 }
-
 
 export const RegisterLeaveService = {
     postRegisterLeave
